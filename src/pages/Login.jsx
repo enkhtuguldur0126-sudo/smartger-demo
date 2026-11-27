@@ -6,6 +6,20 @@ import { backendConfigured } from '../lib/backend.js';
 import { href } from '../lib/router.js';
 import { Loading } from '../components/States.jsx';
 
+// Supabase-ийн алдааг ойлгомжтой бичвэр болгоно. Танихгүй алдааг эх бичвэртэй нь харуулна.
+function authErrorKey(error) {
+  const m = `${error?.message || ''} ${error?.code || ''}`.toLowerCase();
+  if (/already|registered|user_already_exists/.test(m)) return 'auth.exists';
+  if (/signups? not allowed|signup_disabled/.test(m)) return 'auth.signupDisabled';
+  if (/rate limit|over_email_send_rate|too many/.test(m)) return 'auth.rateLimit';
+  if (/database error|unexpected_failure/.test(m)) return 'auth.dbError';
+  if (/password|weak_password/.test(m)) return 'auth.weakPassword';
+  if (/email.*(invalid|address)|email_address_invalid/.test(m)) return 'auth.badEmail';
+  if (/not confirmed|email_not_confirmed/.test(m)) return 'auth.notConfirmed';
+  if (/fetch|network/.test(m)) return 'auth.network';
+  return 'auth.failed';
+}
+
 function NotConfigured() {
   const { t } = useLang();
   return (
@@ -81,14 +95,14 @@ export default function Login() {
       setBusy(true);
       const { data, error } = await signUp(email.trim(), password, company.trim(), phone.trim());
       setBusy(false);
-      if (error) return setMsg({ bad: true, k: /already|registered/i.test(error.message) ? 'auth.exists' : 'auth.failed' });
+      if (error) return setMsg({ bad: true, k: authErrorKey(error), detail: error.message });
       if (!data.session) setMsg({ k: 'auth.checkEmail' });
       return;
     }
     setBusy(true);
     const { error } = await signIn(email.trim(), password);
     setBusy(false);
-    if (error) setMsg({ bad: true, k: /confirm/i.test(error.message) ? 'auth.notConfirmed' : 'auth.wrong' });
+    if (error) setMsg({ bad: true, k: /invalid login/i.test(error.message) ? 'auth.wrong' : authErrorKey(error), detail: error.message });
   };
   const switchMode = (m) => { setMode(m); setMsg(null); };
   const reset = async () => {
@@ -133,7 +147,12 @@ export default function Login() {
             <span>{t('auth.agree')} <a href={href('terms')}>{t('nav.terms')}</a>, <a href={href('privacy')}>{t('nav.privacy')}</a></span>
           </label>
         )}
-        {msg && <p className={`small ${msg.bad ? 'text-bad' : 'text-ok'}`} role="status">{t(msg.k)}</p>}
+        {msg && (
+          <p className={`small ${msg.bad ? 'text-bad' : 'text-ok'}`} role="status">
+            {t(msg.k)}
+            {msg.detail && msg.k !== 'auth.wrong' && <><br /><span className="muted">({msg.detail})</span></>}
+          </p>
+        )}
         <div className="card-row">
           <button className="btn btn-primary" type="submit" disabled={busy}>{busy ? t('state.loading') : t(mode === 'signup' ? 'auth.signUp' : 'auth.signIn')}</button>
           {mode === 'signin' && <button className="btn btn-secondary" type="button" onClick={reset}>{t('auth.forgot')}</button>}

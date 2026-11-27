@@ -468,5 +468,11 @@
   "admin.deleteConfirm": "Delete this account for good? This cannot be undone.",
   "admin.deleteYes": "Yes, delete",
   "admin.userDeleted": "Account deleted.",
-  "kind.profiles": "User"
+  "kind.profiles": "User",
+  "auth.signupDisabled": "Sign-ups are turned off in Supabase. Turn on \"Allow new users to sign up\" in Authentication → Sign In / Providers.",
+  "auth.rateLimit": "Too many attempts or the email sending limit was reached. Please wait and try again.",
+  "auth.dbError": "The database could not save the account. Check that 002-signup.sql was run in the SQL Editor.",
+  "auth.weakPassword": "The password is too weak. Choose a longer password with letters and numbers.",
+  "auth.badEmail": "The email address is not valid.",
+  "auth.network": "Could not reach the database. Check the internet connection."
 }

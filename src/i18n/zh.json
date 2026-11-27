@@ -468,5 +468,11 @@
   "admin.deleteConfirm": "",
   "admin.deleteYes": "",
   "admin.userDeleted": "",
-  "kind.profiles": ""
+  "kind.profiles": "",
+  "auth.signupDisabled": "",
+  "auth.rateLimit": "",
+  "auth.dbError": "",
+  "auth.weakPassword": "",
+  "auth.badEmail": "",
+  "auth.network": ""
 }
