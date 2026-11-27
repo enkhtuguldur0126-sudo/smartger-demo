@@ -7,7 +7,7 @@
     "floors": "3–16",
     "balcony": true,
     "orientation": "S",
-    "floorPlan": null,
+    "floorPlan": "plan-2room",
     "price": 290000000,
     "pricePerM2": 4965753,
     "priceSource": "company",
@@ -27,7 +27,7 @@
     "floors": "3–16",
     "balcony": true,
     "orientation": "SE",
-    "floorPlan": null,
+    "floorPlan": "plan-3room",
     "price": 398000000,
     "pricePerM2": 4847747,
     "priceSource": "company",
@@ -67,7 +67,7 @@
     "floors": "4–16",
     "balcony": true,
     "orientation": "S",
-    "floorPlan": null,
+    "floorPlan": "plan-3room",
     "price": 420000000,
     "pricePerM2": 4855491,
     "priceSource": "company",
@@ -90,10 +90,14 @@
       "status": "not_found"
     },
     "floorPlan": null,
-    "price": 275000000,
-    "pricePerM2": 4508197,
-    "priceSource": "listing",
-    "priceDate": "2026-07-15",
+    "price": {
+      "status": "not_published"
+    },
+    "pricePerM2": {
+      "status": "not_published"
+    },
+    "priceSource": null,
+    "priceDate": null,
     "status": "available",
     "availableCount": 6,
     "payment": {

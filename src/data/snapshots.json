@@ -1,5 +1,83 @@
 [
-  { "projectId": "p-khavryn-tuyaa", "capturedOn": "2025-03-15", "pricePerM2From": 4500000, "promisedHandover": "2027-06", "plan": { "mn": "2 ээлж, 3 блок, 312 айл", "en": "2 phases, 3 blocks, 312 units" }, "amenities": { "mn": "Цэцэрлэг, газар доорх зогсоол", "en": "Kindergarten, underground parking" } },
-  { "projectId": "p-tsenkher-khundii", "capturedOn": "2024-09-01", "pricePerM2From": 4100000, "promisedHandover": "2026-10", "plan": { "mn": "2 ээлж, 2 блок, 186 айл", "en": "2 phases, 2 blocks, 186 units" }, "amenities": { "mn": "Тоглоомын талбай", "en": "Playground" } },
-  { "projectId": "p-khukh-narsan-denj", "capturedOn": "2026-09-15", "pricePerM2From": { "status": "not_published" }, "promisedHandover": "2029-09", "plan": { "mn": "1 ээлж, 1 блок, 140 айл", "en": "1 phase, 1 block, 140 units" }, "amenities": { "mn": "Ногоон байгууламж", "en": "Green space" } }
+  {
+    "projectId": "p-khavryn-tuyaa",
+    "capturedOn": "2025-03-15",
+    "pricePerM2From": 4500000,
+    "promisedHandover": "2027-06",
+    "plan": {
+      "mn": "2 ээлж, 3 блок, 312 айл",
+      "en": "2 phases, 3 blocks, 312 units"
+    },
+    "amenities": {
+      "mn": "Цэцэрлэг, газар доорх зогсоол",
+      "en": "Kindergarten, underground parking"
+    },
+    "history": [
+      {
+        "date": "2025-09-01",
+        "field": "price",
+        "from": "4.50",
+        "to": "4.70",
+        "source": "company"
+      },
+      {
+        "date": "2026-11-01",
+        "field": "price",
+        "from": "4.70",
+        "to": "4.85",
+        "source": "company"
+      }
+    ]
+  },
+  {
+    "projectId": "p-tsenkher-khundii",
+    "capturedOn": "2024-09-01",
+    "pricePerM2From": 4100000,
+    "promisedHandover": "2026-10",
+    "plan": {
+      "mn": "2 ээлж, 2 блок, 186 айл",
+      "en": "2 phases, 2 blocks, 186 units"
+    },
+    "amenities": {
+      "mn": "Тоглоомын талбай",
+      "en": "Playground"
+    },
+    "history": [
+      {
+        "date": "2025-06-10",
+        "field": "price",
+        "from": "4.10",
+        "to": "4.51",
+        "source": "listing"
+      },
+      {
+        "date": "2026-08-20",
+        "field": "handover",
+        "from": "2026-10",
+        "to": "2027-05",
+        "source": "smartger",
+        "note": {
+          "mn": "1-р ээлжийн их бие 40%-д. Компани шинэ хугацаа нийтлээгүй тул Smartger явцаас тооцсон.",
+          "en": "Phase 1 structure at 40%. The company has not published a new date, so Smartger estimated it from progress."
+        }
+      }
+    ]
+  },
+  {
+    "projectId": "p-khukh-narsan-denj",
+    "capturedOn": "2026-09-15",
+    "pricePerM2From": {
+      "status": "not_published"
+    },
+    "promisedHandover": "2029-09",
+    "plan": {
+      "mn": "1 ээлж, 1 блок, 140 айл",
+      "en": "1 phase, 1 block, 140 units"
+    },
+    "amenities": {
+      "mn": "Ногоон байгууламж",
+      "en": "Green space"
+    },
+    "history": []
+  }
 ]

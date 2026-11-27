@@ -1,5 +1,21 @@
 [
   {
+    "id": "pr-kt-0",
+    "projectId": "p-khavryn-tuyaa",
+    "date": "2025-04-10",
+    "percent": 100,
+    "of": {
+      "mn": "Газар шорооны ажил (1-р ээлж)",
+      "en": "Excavation (phase 1)"
+    },
+    "photo": "illustration",
+    "verificationLevel": 1,
+    "checkedBy": {
+      "mn": "Компанийн тайлан",
+      "en": "Company report"
+    }
+  },
+  {
     "id": "pr-kt-1",
     "projectId": "p-khavryn-tuyaa",
     "date": "2025-06-01",
@@ -8,7 +24,7 @@
       "mn": "Суурь цутгалт (1-р ээлж)",
       "en": "Foundation (phase 1)"
     },
-    "photo": null,
+    "photo": "illustration",
     "verificationLevel": 2,
     "checkedBy": {
       "mn": "Smartger (зохиомол)",
@@ -18,11 +34,59 @@
   {
     "id": "pr-kt-2",
     "projectId": "p-khavryn-tuyaa",
+    "date": "2026-03-15",
+    "percent": 35,
+    "of": {
+      "mn": "Их бие (1-р ээлж)",
+      "en": "Structure (phase 1)"
+    },
+    "photo": "illustration",
+    "verificationLevel": 2,
+    "checkedBy": {
+      "mn": "Smartger (зохиомол)",
+      "en": "Smartger (fictional)"
+    }
+  },
+  {
+    "id": "pr-kt-4",
+    "projectId": "p-khavryn-tuyaa",
+    "date": "2026-10-01",
+    "percent": 0,
+    "of": {
+      "mn": "Газар шорооны ажил (2-р ээлж)",
+      "en": "Excavation (phase 2)"
+    },
+    "photo": null,
+    "verificationLevel": 1,
+    "checkedBy": {
+      "mn": "Компанийн тайлан",
+      "en": "Company report"
+    }
+  },
+  {
+    "id": "pr-kt-3",
+    "projectId": "p-khavryn-tuyaa",
     "date": "2026-11-10",
     "percent": 62,
     "of": {
       "mn": "Их бие (1-р ээлж)",
       "en": "Structure (phase 1)"
+    },
+    "photo": "illustration",
+    "verificationLevel": 2,
+    "checkedBy": {
+      "mn": "Smartger (зохиомол)",
+      "en": "Smartger (fictional)"
+    }
+  },
+  {
+    "id": "pr-s3-1",
+    "projectId": "p-sumber-3",
+    "date": "2024-06-30",
+    "percent": 100,
+    "of": {
+      "mn": "Ашиглалтад оролт",
+      "en": "Handover"
     },
     "photo": null,
     "verificationLevel": 2,
@@ -45,38 +109,6 @@
     "checkedBy": {
       "mn": "Компанийн тайлан",
       "en": "Company report"
-    }
-  },
-  {
-    "id": "pr-kn-1",
-    "projectId": "p-khukh-narsan-denj",
-    "date": "2026-10-05",
-    "percent": 0,
-    "of": {
-      "mn": "Суурь цутгалт",
-      "en": "Foundation"
-    },
-    "photo": null,
-    "verificationLevel": 1,
-    "checkedBy": {
-      "mn": "Компанийн тайлан",
-      "en": "Company report"
-    }
-  },
-  {
-    "id": "pr-s3-1",
-    "projectId": "p-sumber-3",
-    "date": "2024-06-30",
-    "percent": 100,
-    "of": {
-      "mn": "Ашиглалтад оролт",
-      "en": "Handover"
-    },
-    "photo": null,
-    "verificationLevel": 2,
-    "checkedBy": {
-      "mn": "Smartger (зохиомол)",
-      "en": "Smartger (fictional)"
     }
   }
 ]

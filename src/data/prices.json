@@ -1,0 +1,41 @@
+[
+  {
+    "id": "pl-kt",
+    "projectId": "p-khavryn-tuyaa",
+    "category": "listing",
+    "pricePerM2": 5100000,
+    "label": {
+      "mn": "Зохиомол зарын дундаж (2 өрөө, давтан худалдаа)",
+      "en": "Fictional listing average (2-room, resale)"
+    },
+    "source": "listing",
+    "date": "2026-11-05",
+    "state": "current"
+  },
+  {
+    "id": "pl-tk",
+    "projectId": "p-tsenkher-khundii",
+    "category": "listing",
+    "pricePerM2": 4510000,
+    "label": {
+      "mn": "Зохиомол зарын дундаж (2 өрөө)",
+      "en": "Fictional listing average (2-room)"
+    },
+    "source": "listing",
+    "date": "2026-07-15",
+    "state": "outdated"
+  },
+  {
+    "id": "pl-s3",
+    "projectId": "p-sumber-3",
+    "category": "listing",
+    "pricePerM2": 4900000,
+    "label": {
+      "mn": "Зохиомол зарын дундаж",
+      "en": "Fictional listing average"
+    },
+    "source": "listing",
+    "date": "2026-10-28",
+    "state": "current"
+  }
+]

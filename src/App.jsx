@@ -6,7 +6,8 @@ import Home from './pages/Home.jsx';
 import Project from './pages/Project.jsx';
 import Companies from './pages/Companies.jsx';
 import Company from './pages/Company.jsx';
-import { Compare, HowItWorks, Report } from './pages/Simple.jsx';
+import { HowItWorks, Report } from './pages/Simple.jsx';
+import Compare from './pages/Compare.jsx';
 import Placeholder from './pages/Placeholder.jsx';
 import UiKit from './pages/UiKit.jsx';
 
@@ -14,10 +15,10 @@ function Page({ parts }) {
   const [name, id] = parts;
   switch (name) {
     case undefined: return <Home />;
-    case 'project': return <Project id={id} />;
+    case 'project': return <Project id={id} tab={parts[2]} />;
     case 'companies': return <Companies />;
     case 'company': return <Company id={id} />;
-    case 'compare': return <Compare />;
+    case 'compare': return <Compare add={id} />;
     case 'how-it-works': return <HowItWorks />;
     case 'report': return <Report />;
     case 'ui': return <UiKit />;

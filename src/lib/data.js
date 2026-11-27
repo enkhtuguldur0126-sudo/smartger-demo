@@ -8,8 +8,9 @@ import progress from '../data/progress.json';
 import claims from '../data/claims.json';
 import snapshots from '../data/snapshots.json';
 import benchmarks from '../data/benchmarks.json';
+import prices from '../data/prices.json';
 
-export const db = { companies, projects, phases, blocks, unitTypes, progress, claims, snapshots, benchmarks };
+export const db = { companies, projects, phases, blocks, unitTypes, progress, claims, snapshots, benchmarks, prices };
 
 // Талбар "олдоогүй" эсвэл "үнэ нийтлээгүй" төлөвтэй эсэх.
 export function missing(v) {
@@ -78,3 +79,28 @@ export const companyOf = (project) => companyById(project.companyId);
 // Үнийг сая төгрөгөөр (2 оронтой) харуулна.
 export const millions = (v, locale) =>
   (Number(v) / 1e6).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+
+export const unitById = (id) => unitTypes.find((u) => u.id === id) || null;
+export const blockById = (id) => blocks.find((b) => b.id === id) || null;
+export const phaseById = (id) => phases.find((p) => p.id === id) || null;
+export const progressOf = (projectId) =>
+  progress.filter((p) => p.projectId === projectId).sort((a, b) => (a.date < b.date ? 1 : -1));
+export const claimsOf = (projectId) => claims.filter((c) => c.projectId === projectId);
+export const snapshotOf = (projectId) => snapshots.find((s) => s.projectId === projectId) || null;
+export const listingPricesOf = (projectId) => prices.filter((p) => p.projectId === projectId && p.category === 'listing');
+
+// Байрны төрлөөс төсөл хүртэлх замыг олно.
+export function unitContext(unit) {
+  const block = blockById(unit.blockId);
+  const phase = block && phaseById(block.phaseId);
+  const project = phase && projectById(phase.projectId);
+  return { block, phase, project };
+}
+
+// "2026-10" ба "2027-05" хоорондох сарын зөрүү.
+export function monthsBetween(a, b) {
+  const [ay, am] = a.split('-').map(Number);
+  const [by, bm] = b.split('-').map(Number);
+  return (by - ay) * 12 + (bm - am);
+}
