@@ -20,7 +20,7 @@ export default function Header({ active }) {
     <header className="header">
       <div className="header-bar">
         <a className="brand" href={href()}>
-          <img src={`${import.meta.env.BASE_URL}logo-mark-outline.png`} alt="" width="32" height="32" />
+          <img className="logo-img" src={`${import.meta.env.BASE_URL}logo-mark.png`} alt="" width="32" height="32" />
           <span>{t('app.name')}</span>
         </a>
         <div className="header-actions">

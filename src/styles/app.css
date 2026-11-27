@@ -183,8 +183,8 @@ a.card:hover { border-color: var(--primary); }
 .pin-completed .pin-fill { background: var(--primary); }
 .pin-logo {
   position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; transform: translate(-50%, -50%);
+  display: grid; place-items: center;
   border-radius: 50%; background-color: var(--surface);
-  background-size: 18px 18px; background-repeat: no-repeat; background-position: center;
   box-shadow: 0 0 0 1px var(--border);
 }
 .pin-count {
@@ -232,4 +232,10 @@ a.card:hover { border-color: var(--primary); }
 .company-logo.placeholder {
   display: grid; place-items: center; background: var(--bg); color: var(--primary);
   border: 1px dashed var(--border); font-weight: 700; font-size: 1.3rem;
+}
+
+/* Логоны 1px нарийн хүрээ. Өнгө нь theme.css-ийн --logo-outline (шөнө цагаан, өдөр байхгүй). */
+.logo-img {
+  filter: drop-shadow(1px 0 0 var(--logo-outline)) drop-shadow(-1px 0 0 var(--logo-outline))
+          drop-shadow(0 1px 0 var(--logo-outline)) drop-shadow(0 -1px 0 var(--logo-outline));
 }
