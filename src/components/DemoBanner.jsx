@@ -4,7 +4,7 @@ export default function DemoBanner() {
   const { t } = useLang();
   return (
     <div className="demo-banner" role="note">
-      <strong>DEMO</strong> {t('demo.banner')}
+      <strong>{t('demo.label')}</strong> {t('demo.banner')}
     </div>
   );
 }

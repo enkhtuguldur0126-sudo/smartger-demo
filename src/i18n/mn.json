@@ -56,5 +56,20 @@
   "project.totalUnits": "Нийт айл",
   "project.totalArea": "Нийт талбай",
   "project.greenArea": "Ногоон байгууламж",
-  "project.phases": "Ээлж"
+  "project.phases": "Ээлж",
+  "demo.label": "DEMO",
+  "unit.m2": "м²",
+  "state.loading": "Ачаалж байна…",
+  "state.error": "Мэдээлэл ачаалахад алдаа гарлаа.",
+  "state.retry": "Дахин оролдох",
+  "ui.title": "Дизайны хэсгүүд",
+  "ui.buttons": "Товч",
+  "ui.badges": "Шошго",
+  "ui.states": "Төлөвүүд",
+  "ui.primary": "Үндсэн товч",
+  "ui.secondary": "Хоёрдогч товч",
+  "ui.alerts": "Анхааруулгын өнгө",
+  "ui.ok": "Хэвийн",
+  "ui.warn": "Анхаар",
+  "ui.bad": "Хоцорсон"
 }

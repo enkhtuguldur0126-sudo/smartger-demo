@@ -21,6 +21,13 @@
   --bad: #C62828;
   --bad-bg: #FDE7E7;
 
+  /* Өнгөний загвар сонгох дугуйнууд (загвар бүрийн өдрийн үндсэн өнгө) */
+  --swatch-smartger: #0060F2;
+  --swatch-navy: #0B2E6E;
+  --swatch-sky: #0067B0;
+  --swatch-indigo: #3A3CD4;
+  --swatch-slate: #3D5170;
+
   --radius: 12px;
   --radius-sm: 8px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;

@@ -24,9 +24,9 @@ export default function Project({ id }) {
           <dt>{t('project.totalUnits')}</dt>
           <dd><Sourced field={project.totalUnits} format={num} /></dd>
           <dt>{t('project.totalArea')}</dt>
-          <dd><Sourced field={project.totalArea} format={(v) => `${num(v)} м²`} /></dd>
+          <dd><Sourced field={project.totalArea} format={(v) => `${num(v)} ${t('unit.m2')}`} /></dd>
           <dt>{t('project.greenArea')}</dt>
-          <dd><Sourced field={project.greenArea} format={(v) => `${num(v)} м²`} /></dd>
+          <dd><Sourced field={project.greenArea} format={(v) => `${num(v)} ${t('unit.m2')}`} /></dd>
           <dt>{t('project.phases')}</dt>
           <dd>{phasesOf(project.id).length}</dd>
         </dl>

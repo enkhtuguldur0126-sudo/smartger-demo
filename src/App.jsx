@@ -8,6 +8,7 @@ import Companies from './pages/Companies.jsx';
 import Company from './pages/Company.jsx';
 import { Compare, HowItWorks, Report } from './pages/Simple.jsx';
 import Placeholder from './pages/Placeholder.jsx';
+import UiKit from './pages/UiKit.jsx';
 
 function Page({ parts }) {
   const [name, id] = parts;
@@ -19,6 +20,7 @@ function Page({ parts }) {
     case 'compare': return <Compare />;
     case 'how-it-works': return <HowItWorks />;
     case 'report': return <Report />;
+    case 'ui': return <UiKit />;
     default: return <Placeholder titleKey="page.notFound" />;
   }
 }

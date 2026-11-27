@@ -56,5 +56,20 @@
   "project.totalUnits": "",
   "project.totalArea": "",
   "project.greenArea": "",
-  "project.phases": ""
+  "project.phases": "",
+  "demo.label": "",
+  "unit.m2": "",
+  "state.loading": "",
+  "state.error": "",
+  "state.retry": "",
+  "ui.title": "",
+  "ui.buttons": "",
+  "ui.badges": "",
+  "ui.states": "",
+  "ui.primary": "",
+  "ui.secondary": "",
+  "ui.alerts": "",
+  "ui.ok": "",
+  "ui.warn": "",
+  "ui.bad": ""
 }

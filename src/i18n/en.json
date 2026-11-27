@@ -56,5 +56,20 @@
   "project.totalUnits": "Total units",
   "project.totalArea": "Total area",
   "project.greenArea": "Green space",
-  "project.phases": "Phases"
+  "project.phases": "Phases",
+  "demo.label": "DEMO",
+  "unit.m2": "m²",
+  "state.loading": "Loading…",
+  "state.error": "Something went wrong while loading data.",
+  "state.retry": "Try again",
+  "ui.title": "Design components",
+  "ui.buttons": "Buttons",
+  "ui.badges": "Badges",
+  "ui.states": "States",
+  "ui.primary": "Primary button",
+  "ui.secondary": "Secondary button",
+  "ui.alerts": "Alert colours",
+  "ui.ok": "On track",
+  "ui.warn": "Attention",
+  "ui.bad": "Delayed"
 }
