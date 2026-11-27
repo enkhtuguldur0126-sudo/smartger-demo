@@ -16,7 +16,9 @@
 3. Шалгах: зүүн цэсний **Table Editor** → `projects` хүснэгтэд 5 мөр, `is_fictional` багана `TRUE` байна.
 
 ## 3. Бүртгүүлэхийг хаах, сайтын хаяг
-1. **Authentication → Sign In / Providers** → "Allow new users to sign up" унтраана (хэн ч өөрөө бүртгүүлэхгүй).
+1. **Authentication → Sign In / Providers** → "Allow new users to sign up" **асаалттай** байна (компани сайт дээр өөрөө бүртгүүлнэ; админ компанид холбох хүртэл юу ч өөрчилж чадахгүй).
+   - Шинэчлэлт (2026-11-27): өмнө нь schema.sql ажиллуулсан бол `supabase/migrations/002-signup.sql`-ийг мөн SQL Editor-т нэг удаа ажиллуулна.
+   - Supabase-ийн үнэгүй имэйл илгээгч цагт цөөн имэйл явуулдаг. Туршилтад "Confirm email"-ийг түр унтрааж болно.
 2. **Authentication → URL Configuration** → Site URL: `https://enkhtuguldur0126-sudo.github.io/smartger-demo/` → Save.
 
 ## 4. Админ хэрэглэгч (та өөрөө)

@@ -1,7 +1,7 @@
-// Нэвтрэх хуудас. Бүртгүүлэх боломжгүй: хэрэглэгчийг Smartger админ урьж нэмнэ.
+// Нэвтрэх ба бүртгүүлэх хуудас. Шинэ бүртгэлийг админ компанид холбосны дараа л мэдээлэл оруулна.
 import { useState } from 'react';
 import { useLang } from '../lib/i18n.jsx';
-import { useAuth, signIn, signOut, sendReset, updatePassword } from '../lib/auth.jsx';
+import { useAuth, signIn, signUp, signOut, sendReset, updatePassword } from '../lib/auth.jsx';
 import { backendConfigured } from '../lib/backend.js';
 import { href } from '../lib/router.js';
 import { Loading } from '../components/States.jsx';
@@ -62,6 +62,10 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState(null);
+  const [mode, setMode] = useState('signin');
+  const [company, setCompany] = useState('');
+  const [phone, setPhone] = useState('');
+  const [agree, setAgree] = useState(false);
 
   if (!backendConfigured) return <section className="stack"><h1>{t('auth.title')}</h1><NotConfigured /></section>;
   if (!ready) return <Loading />;
@@ -69,11 +73,24 @@ export default function Login() {
 
   const submit = async (e) => {
     e.preventDefault();
+    setMsg(null);
+    if (mode === 'signup') {
+      if (password.length < 10) return setMsg({ bad: true, k: 'auth.pwShort' });
+      if (!company.trim()) return setMsg({ bad: true, k: 'auth.needCompany' });
+      if (!agree) return setMsg({ bad: true, k: 'auth.needAgree' });
+      setBusy(true);
+      const { data, error } = await signUp(email.trim(), password, company.trim(), phone.trim());
+      setBusy(false);
+      if (error) return setMsg({ bad: true, k: /already|registered/i.test(error.message) ? 'auth.exists' : 'auth.failed' });
+      if (!data.session) setMsg({ k: 'auth.checkEmail' });
+      return;
+    }
     setBusy(true);
     const { error } = await signIn(email.trim(), password);
     setBusy(false);
-    if (error) setMsg({ bad: true, k: 'auth.wrong' });
+    if (error) setMsg({ bad: true, k: /confirm/i.test(error.message) ? 'auth.notConfirmed' : 'auth.wrong' });
   };
+  const switchMode = (m) => { setMode(m); setMsg(null); };
   const reset = async () => {
     if (!email.trim()) return setMsg({ bad: true, k: 'auth.needEmail' });
     await sendReset(email.trim());
@@ -82,23 +99,45 @@ export default function Login() {
 
   return (
     <section className="stack narrow">
-      <h1>{t('auth.title')}</h1>
+      <h1>{t(mode === 'signup' ? 'auth.signUpTitle' : 'auth.title')}</h1>
+      <div className="segmented" role="group">
+        <button aria-pressed={mode === 'signin'} onClick={() => switchMode('signin')}>{t('auth.signIn')}</button>
+        <button aria-pressed={mode === 'signup'} onClick={() => switchMode('signup')}>{t('auth.signUp')}</button>
+      </div>
       <form className="card stack" onSubmit={submit}>
-        <p className="small muted">{t('auth.intro')}</p>
+        <p className="small muted">{t(mode === 'signup' ? 'auth.signUpIntro' : 'auth.intro')}</p>
+        {mode === 'signup' && (
+          <div className="field">
+            <label htmlFor="company">{t('auth.companyName')} *</label>
+            <input id="company" className="input" autoComplete="organization" value={company} onChange={(e) => setCompany(e.target.value)} />
+          </div>
+        )}
         <div className="field">
-          <label htmlFor="email">{t('auth.email')}</label>
+          <label htmlFor="email">{t('auth.email')}{mode === 'signup' && ' *'}</label>
           <input id="email" className="input" type="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
+        {mode === 'signup' && (
+          <div className="field">
+            <label htmlFor="phone">{t('auth.phone')}</label>
+            <input id="phone" className="input" type="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          </div>
+        )}
         <div className="field">
-          <label htmlFor="pw">{t('auth.password')}</label>
-          <input id="pw" className="input" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <label htmlFor="pw">{t('auth.password')}{mode === 'signup' && ' *'}</label>
+          <input id="pw" className="input" type="password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} value={password} onChange={(e) => setPassword(e.target.value)} required />
+          {mode === 'signup' && <span className="small muted">{t('auth.pwRule')}</span>}
         </div>
+        {mode === 'signup' && (
+          <label className="check small">
+            <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+            <span>{t('auth.agree')} <a href={href('terms')}>{t('nav.terms')}</a>, <a href={href('privacy')}>{t('nav.privacy')}</a></span>
+          </label>
+        )}
         {msg && <p className={`small ${msg.bad ? 'text-bad' : 'text-ok'}`} role="status">{t(msg.k)}</p>}
         <div className="card-row">
-          <button className="btn btn-primary" type="submit" disabled={busy}>{busy ? t('state.loading') : t('auth.signIn')}</button>
-          <button className="btn btn-secondary" type="button" onClick={reset}>{t('auth.forgot')}</button>
+          <button className="btn btn-primary" type="submit" disabled={busy}>{busy ? t('state.loading') : t(mode === 'signup' ? 'auth.signUp' : 'auth.signIn')}</button>
+          {mode === 'signin' && <button className="btn btn-secondary" type="button" onClick={reset}>{t('auth.forgot')}</button>}
         </div>
-        <p className="small muted">{t('auth.noSignup')}</p>
       </form>
     </section>
   );

@@ -5,12 +5,13 @@ import { useAuth } from '../lib/auth.jsx';
 import { backendConfigured } from '../lib/backend.js';
 import { href } from '../lib/router.js';
 import { KINDS } from '../lib/forms.js';
-import { loadAll, review, loadAudit, loadProfiles, updateProfile } from '../lib/workspace.js';
+import { loadAll, review, loadAudit, loadProfiles, updateProfile, deleteUser } from '../lib/workspace.js';
+import { useAuth as useAuthState } from '../lib/auth.jsx';
 import { Loading, ErrorState } from '../components/States.jsx';
 import { ReviewBadge, FictionalTag } from './Workspace.jsx';
 
 const QUEUE_KINDS = ['companies', 'projects', 'phases', 'blocks', 'unitTypes', 'progress', 'claims', 'prices'];
-const TABLE_KIND = { companies: 'companies', projects: 'projects', phases: 'phases', blocks: 'blocks', unit_types: 'unitTypes', progress: 'progress', claims: 'claims', prices: 'prices', snapshots: 'snapshots', benchmarks: 'benchmarks' };
+const TABLE_KIND = { profiles: 'profiles', companies: 'companies', projects: 'projects', phases: 'phases', blocks: 'blocks', unit_types: 'unitTypes', progress: 'progress', claims: 'claims', prices: 'prices', snapshots: 'snapshots', benchmarks: 'benchmarks' };
 
 function titleOf(kind, r, pick, t) {
   const def = KINDS[kind];
@@ -85,6 +86,8 @@ function Users({ companies }) {
   const { t, pick } = useLang();
   const [list, setList] = useState(null);
   const [msg, setMsg] = useState(null);
+  const [confirmId, setConfirmId] = useState(null);
+  const { user } = useAuthState();
   const load = () => loadProfiles().then(setList).catch(() => setList([]));
   useEffect(() => { load(); }, []);
   if (!list) return <Loading />;
@@ -97,14 +100,31 @@ function Users({ companies }) {
       setMsg({ bad: true, k: 'form.saveFailed' });
     }
   };
+  const remove = async (id) => {
+    try {
+      await deleteUser(id);
+      setMsg({ k: 'admin.userDeleted' });
+      setConfirmId(null);
+      load();
+    } catch {
+      setMsg({ bad: true, k: 'form.saveFailed' });
+    }
+  };
+  const waiting = list.filter((p) => p.role === 'company' && !p.company_id).length;
   return (
     <div className="stack-sm">
       <p className="small muted">{t('admin.usersIntro')}</p>
+      {waiting > 0 && <p className="card small badge-warn">{t('admin.waiting', { n: waiting })}</p>}
       {msg && <p className={`small ${msg.bad ? 'text-bad' : 'text-ok'}`} role="status">{t(msg.k)}</p>}
       <ul className="stack-sm plain-list">
         {list.map((p) => (
           <li key={p.id} className="card stack-sm">
             <strong>{p.email}</strong>
+            <span className="small muted">
+              {t('admin.requested')}: {p.requested_company || t('common.notFound')}
+              {p.phone ? ` · ${p.phone}` : ''} · {t('admin.joined', { date: String(p.created_at).slice(0, 10) })}
+            </span>
+            {p.role === 'company' && !p.company_id && <span className="badge tiny badge-warn">{t('admin.needsLink')}</span>}
             <div className="field-pair">
               <select className="input" aria-label={t('admin.role')} value={p.role} onChange={(e) => change(p.id, { role: e.target.value })}>
                 <option value="company">{t('role.company')}</option>
@@ -115,6 +135,17 @@ function Users({ companies }) {
                 {companies.map((c) => <option key={c.id} value={c.id}>{pick(c.name)}</option>)}
               </select>
             </div>
+            {p.id !== user?.id && (
+              confirmId === p.id ? (
+                <div className="card-row">
+                  <span className="small text-bad">{t('admin.deleteConfirm')}</span>
+                  <button className="btn btn-primary" onClick={() => remove(p.id)}>{t('admin.deleteYes')}</button>
+                  <button className="btn btn-secondary" onClick={() => setConfirmId(null)}>{t('form.cancel')}</button>
+                </div>
+              ) : (
+                <div><button className="btn btn-secondary" onClick={() => setConfirmId(p.id)}>{t('admin.delete')}</button></div>
+              )
+            )}
           </li>
         ))}
       </ul>

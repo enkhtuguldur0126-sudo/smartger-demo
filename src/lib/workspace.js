@@ -91,3 +91,10 @@ export async function updateProfile(id, patch) {
   const { error } = await c.from('profiles').update(patch).eq('id', id);
   if (error) throw error;
 }
+
+// Админ: хэрэглэгчийг бүрмөсөн устгана (өгөгдлийн сангийн admin_delete_user функц).
+export async function deleteUser(id) {
+  const c = await client();
+  const { error } = await c.rpc('admin_delete_user', { target: id });
+  if (error) throw error;
+}

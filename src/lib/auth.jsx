@@ -1,5 +1,5 @@
 // Нэвтрэлт: зочин (нэвтрээгүй), компани, Smartger админ.
-// Бүртгүүлэх боломжгүй. Хэрэглэгчийг админ Supabase дээр урьж нэмнэ.
+// Компани сайт дээр өөрөө бүртгүүлнэ. Админ компанид холбох хүртэл юу ч өөрчлөх эрхгүй.
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getClient, backendConfigured } from './backend.js';
 
@@ -38,6 +38,18 @@ export const useAuth = () => useContext(AuthContext);
 export async function signIn(email, password) {
   const client = await getClient();
   return client.auth.signInWithPassword({ email, password });
+}
+
+export async function signUp(email, password, companyName, phone) {
+  const client = await getClient();
+  return client.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { company_name: companyName, phone },
+      emailRedirectTo: window.location.origin + window.location.pathname + '#/login'
+    }
+  });
 }
 
 export async function signOut() {

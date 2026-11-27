@@ -85,6 +85,20 @@ select pg_temp.expect(true, 'зураг: өөрийн хавтас руу ору
 select pg_temp.expect_fail($$insert into storage.objects (bucket_id, name) values ('progress-photos', 'c-khangai/t.jpg')$$, 'зураг: өөр компанийн хавтас руу');
 reset role;
 
+-- 8. Өөрөө бүртгүүлсэн хэрэглэгч: эрхгүй, админ устгана
+insert into auth.users (id, email, raw_user_meta_data) values ('00000000-0000-0000-0000-0000000000d1', 'new@example.test', '{"company_name":"Шинэ компани (зохиомол)"}') on conflict do nothing;
+select pg_temp.expect((select requested_company from profiles where id = '00000000-0000-0000-0000-0000000000d1') = 'Шинэ компани (зохиомол)', 'бүртгэл: компанийн нэр хадгалагдсан');
+set role authenticated; select set_config('request.jwt.claim.sub', '00000000-0000-0000-0000-0000000000d1', false);
+select pg_temp.expect_fail($$insert into projects (id, company_id, status, last_update, lat, lng, data) values ('t-n','c-sumber','planning','2026-11-27',47.9,106.9,'{}')$$, 'шинэ бүртгэл: компанид холбогдоогүй үед төсөл нэмэх');
+select pg_temp.expect_fail($$select public.admin_delete_user('00000000-0000-0000-0000-0000000000c2')$$, 'шинэ бүртгэл: бусдыг устгах');
+reset role;
+set role authenticated; select set_config('request.jwt.claim.sub', '00000000-0000-0000-0000-0000000000a1', false);
+select pg_temp.expect_fail($$select public.admin_delete_user('00000000-0000-0000-0000-0000000000a1')$$, 'админ: өөрийгөө устгах');
+select public.admin_delete_user('00000000-0000-0000-0000-0000000000d1');
+reset role;
+select pg_temp.expect((select count(*) from auth.users where id = '00000000-0000-0000-0000-0000000000d1') = 0 and (select count(*) from profiles where id = '00000000-0000-0000-0000-0000000000d1') = 0, 'админ: бүртгэл устгасан');
+select pg_temp.expect((select count(*) from audit_log where table_name = 'profiles' and row_id = '00000000-0000-0000-0000-0000000000d1') >= 1, 'түүх: устгасныг бичсэн');
+
 -- Цэвэрлэгээ
 select set_config('request.jwt.claim.sub', '', false);
 delete from projects where id like 't-%';
