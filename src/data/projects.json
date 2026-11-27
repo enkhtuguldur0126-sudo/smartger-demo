@@ -1,0 +1,54 @@
+[
+  {
+    "id": "p-khavryn-tuyaa",
+    "name": { "mn": "Хаврын Туяа хотхон", "en": "Khavryn Tuyaa Residence" },
+    "companyId": "c-sumber",
+    "address": { "mn": "Баянзүрх дүүрэг (зохиомол хаяг)", "en": "Bayanzurkh district (fictional address)" },
+    "coords": [47.9135, 106.9620],
+    "status": "under_construction",
+    "lastUpdate": "2026-11-10",
+    "totalArea": { "value": 18500, "unit": "m2", "source": "document", "date": "2025-03-15" },
+    "greenArea": { "value": 4200, "unit": "m2", "source": "company", "date": "2025-03-15", "state": "planned" },
+    "totalUnits": { "value": 312, "source": "document", "date": "2025-03-15" },
+    "permit": {
+      "number": "ЗӨВ-2025-0000 (зохиомол)",
+      "issuer": { "mn": "Барилгын зөвшөөрөл олгох байгууллага (зохиомол)", "en": "Building permit authority (fictional)" },
+      "date": "2025-02-20",
+      "source": "document"
+    },
+    "escrowAccount": { "bank": { "mn": "Жишээ банк (зохиомол)", "en": "Example Bank (fictional)" }, "account": "0000 0000 00", "source": "document", "date": "2025-03-01" }
+  },
+  {
+    "id": "p-tsenkher-khundii",
+    "name": { "mn": "Цэнхэр Хөндий хотхон", "en": "Tsenkher Khundii Residence" },
+    "companyId": "c-khangai",
+    "address": { "mn": "Хан-Уул дүүрэг (зохиомол хаяг)", "en": "Khan-Uul district (fictional address)" },
+    "coords": [47.8885, 106.8930],
+    "status": "under_construction",
+    "lastUpdate": "2026-08-20",
+    "totalArea": { "value": 11200, "unit": "m2", "source": "company", "date": "2024-09-01" },
+    "greenArea": { "status": "not_found" },
+    "totalUnits": { "value": 186, "source": "company", "date": "2024-09-01" },
+    "permit": {
+      "number": "ЗӨВ-2024-0000 (зохиомол)",
+      "issuer": { "mn": "Барилгын зөвшөөрөл олгох байгууллага (зохиомол)", "en": "Building permit authority (fictional)" },
+      "date": "2024-07-10",
+      "source": "company"
+    },
+    "escrowAccount": { "status": "not_found" }
+  },
+  {
+    "id": "p-khukh-narsan-denj",
+    "name": { "mn": "Хөх Нарсан Дэнж хотхон", "en": "Khukh Narsan Denj Residence" },
+    "companyId": "c-mungun",
+    "address": { "mn": "Сүхбаатар дүүрэг (зохиомол хаяг)", "en": "Sukhbaatar district (fictional address)" },
+    "coords": [47.9390, 106.9185],
+    "status": "planning",
+    "lastUpdate": "2026-10-05",
+    "totalArea": { "value": 9600, "unit": "m2", "source": "company", "date": "2026-09-15", "state": "planned" },
+    "greenArea": { "value": 2500, "unit": "m2", "source": "company", "date": "2026-09-15", "state": "planned" },
+    "totalUnits": { "value": 140, "source": "company", "date": "2026-09-15", "state": "planned" },
+    "permit": { "status": "not_found" },
+    "escrowAccount": { "status": "not_found" }
+  }
+]

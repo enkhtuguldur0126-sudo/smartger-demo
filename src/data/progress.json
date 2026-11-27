@@ -1,0 +1,6 @@
+[
+  { "id": "pr-kt-1", "projectId": "p-khavryn-tuyaa", "date": "2025-06-01", "percent": 100, "of": { "mn": "Суурь цутгалт (1-р ээлж)", "en": "Foundation (phase 1)" }, "photo": null, "verificationLevel": 2, "checkedBy": { "mn": "Smartger (зохиомол)", "en": "Smartger (fictional)" } },
+  { "id": "pr-kt-2", "projectId": "p-khavryn-tuyaa", "date": "2026-11-10", "percent": 62, "of": { "mn": "Их бие (1-р ээлж)", "en": "Structure (phase 1)" }, "photo": null, "verificationLevel": 2, "checkedBy": { "mn": "Smartger (зохиомол)", "en": "Smartger (fictional)" } },
+  { "id": "pr-tk-1", "projectId": "p-tsenkher-khundii", "date": "2026-08-20", "percent": 40, "of": { "mn": "Их бие (1-р ээлж)", "en": "Structure (phase 1)" }, "photo": null, "verificationLevel": 1, "checkedBy": { "mn": "Компанийн тайлан", "en": "Company report" } },
+  { "id": "pr-kn-1", "projectId": "p-khukh-narsan-denj", "date": "2026-10-05", "percent": 0, "of": { "mn": "Суурь цутгалт", "en": "Foundation" }, "photo": null, "verificationLevel": 1, "checkedBy": { "mn": "Компанийн тайлан", "en": "Company report" } }
+]

@@ -1,0 +1,85 @@
+/* Smartger өнгөний хувьсагчид. Өнгийг зөвхөн эндээс авна.
+   data-theme: light | dark (байхгүй бол төхөөрөмжийн тохиргоог дагана)
+   data-palette: smartger | navy | sky | indigo | slate */
+
+:root {
+  --bg: #F6F8FC;
+  --surface: #FFFFFF;
+  --text: #0B1B33;
+  --text-muted: #4A5B78;
+  --primary: #0060F2;
+  --on-primary: #FFFFFF;
+  --accent: #0070FB;
+  --border: #DCE3EF;
+  --shadow: 0 1px 2px rgba(11, 27, 51, 0.06), 0 4px 16px rgba(11, 27, 51, 0.06);
+
+  /* Анхааруулгын өнгө: загвараас үл хамааран тогтмол */
+  --ok: #1E7D34;
+  --ok-bg: #E4F4E8;
+  --warn: #9A5B00;
+  --warn-bg: #FFF3D6;
+  --bad: #C62828;
+  --bad-bg: #FDE7E7;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #071327;
+    --surface: #0E1F3D;
+    --text: #E8EEF9;
+    --text-muted: #9FB1CF;
+    --primary: #4D96FF;
+    --on-primary: #041229;
+    --accent: #6AA9FF;
+    --border: #1F3358;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+    --ok: #5DD27A;
+    --ok-bg: #12351F;
+    --warn: #F2C14E;
+    --warn-bg: #3A2E0E;
+    --bad: #FF7A7A;
+    --bad-bg: #3D1616;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #071327;
+  --surface: #0E1F3D;
+  --text: #E8EEF9;
+  --text-muted: #9FB1CF;
+  --primary: #4D96FF;
+  --on-primary: #041229;
+  --accent: #6AA9FF;
+  --border: #1F3358;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+  --ok: #5DD27A;
+  --ok-bg: #12351F;
+  --warn: #F2C14E;
+  --warn-bg: #3A2E0E;
+  --bad: #FF7A7A;
+  --bad-bg: #3D1616;
+  color-scheme: dark;
+}
+
+/* Логоноос гаргасан 4 нэмэлт загвар. Зөвхөн үндсэн ба акцент өнгийг солино. */
+:root[data-palette="navy"]   { --primary: #0B2E6E; --accent: #1D4C9E; }
+:root[data-palette="sky"]    { --primary: #0067B0; --accent: #0A74C2; }
+:root[data-palette="indigo"] { --primary: #3A3CD4; --accent: #4B4EE0; }
+:root[data-palette="slate"]  { --primary: #3D5170; --accent: #4A6085; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])[data-palette="navy"]   { --primary: #86AEF2; --accent: #A3C2F6; }
+  :root:not([data-theme="light"])[data-palette="sky"]    { --primary: #5CC2FF; --accent: #8AD4FF; }
+  :root:not([data-theme="light"])[data-palette="indigo"] { --primary: #A0A2FF; --accent: #B8BAFF; }
+  :root:not([data-theme="light"])[data-palette="slate"]  { --primary: #AEBDD4; --accent: #C4D0E2; }
+}
+:root[data-theme="dark"][data-palette="navy"]   { --primary: #86AEF2; --accent: #A3C2F6; }
+:root[data-theme="dark"][data-palette="sky"]    { --primary: #5CC2FF; --accent: #8AD4FF; }
+:root[data-theme="dark"][data-palette="indigo"] { --primary: #A0A2FF; --accent: #B8BAFF; }
+:root[data-theme="dark"][data-palette="slate"]  { --primary: #AEBDD4; --accent: #C4D0E2; }

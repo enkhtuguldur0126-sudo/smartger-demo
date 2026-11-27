@@ -1,0 +1,8 @@
+[
+  { "id": "b-kt-a", "phaseId": "ph-kt-1", "name": "A", "floors": 16 },
+  { "id": "b-kt-b", "phaseId": "ph-kt-1", "name": "B", "floors": 12 },
+  { "id": "b-kt-c", "phaseId": "ph-kt-2", "name": "C", "floors": 16 },
+  { "id": "b-tk-1", "phaseId": "ph-tk-1", "name": "1", "floors": 12 },
+  { "id": "b-tk-2", "phaseId": "ph-tk-2", "name": "2", "floors": 12 },
+  { "id": "b-kn-a", "phaseId": "ph-kn-1", "name": "A", "floors": 14 }
+]

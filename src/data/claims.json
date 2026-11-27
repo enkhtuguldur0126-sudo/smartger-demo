@@ -1,0 +1,6 @@
+[
+  { "id": "cl-kt-1", "projectId": "p-khavryn-tuyaa", "text": { "mn": "Хотхоны дотор 1 цэцэрлэг", "en": "Kindergarten inside the complex" }, "source": "document", "date": "2025-03-15", "state": "planned" },
+  { "id": "cl-kt-2", "projectId": "p-khavryn-tuyaa", "text": { "mn": "Газар доорх зогсоол 220 машин", "en": "Underground parking for 220 cars" }, "source": "company", "date": "2025-03-15", "state": "planned" },
+  { "id": "cl-tk-1", "projectId": "p-tsenkher-khundii", "text": { "mn": "Хүүхдийн тоглоомын талбай", "en": "Children's playground" }, "source": "company", "date": "2024-09-01", "state": "planned" },
+  { "id": "cl-kn-1", "projectId": "p-khukh-narsan-denj", "text": { "mn": "Ногоон байгууламж 2,500 м²", "en": "Green space 2,500 m²" }, "source": "company", "date": "2026-09-15", "state": "planned" }
+]

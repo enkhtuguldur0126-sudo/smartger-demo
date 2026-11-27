@@ -1,0 +1,147 @@
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+}
+a { color: var(--primary); }
+h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 12px; }
+h2 { font-size: 1.2rem; margin: 0 0 12px; }
+h3 { font-size: 1.05rem; margin: 4px 0; }
+.muted { color: var(--text-muted); }
+.small { font-size: 0.875rem; }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+
+/* Demo тэмдэглэгээ */
+.demo-banner {
+  background: var(--warn-bg);
+  color: var(--warn);
+  font-size: 0.8rem;
+  padding: 6px 16px;
+  text-align: center;
+}
+.demo-banner strong { margin-right: 4px; }
+
+/* Толгой */
+.header {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.header-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; padding: 8px 16px; max-width: 1100px; margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); font-weight: 700; font-size: 1.1rem; }
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+  display: grid; place-items: center; width: 44px; height: 44px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent;
+}
+
+.segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 2px; background: var(--bg); }
+.segmented button {
+  border: 0; background: transparent; border-radius: 999px;
+  padding: 6px 12px; min-height: 36px; font-size: 0.875rem; color: var(--text-muted);
+}
+.segmented button[aria-pressed="true"] { background: var(--primary); color: var(--on-primary); font-weight: 600; }
+
+.nav { display: none; flex-direction: column; padding: 8px 16px 16px; max-width: 1100px; margin: 0 auto; }
+.nav.open { display: flex; }
+.nav > a {
+  padding: 12px 4px; text-decoration: none; color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.nav > a[aria-current="page"] { color: var(--primary); font-weight: 600; }
+.nav-settings { display: grid; gap: 12px; padding-top: 12px; }
+.nav-settings label { display: grid; gap: 6px; font-size: 0.875rem; color: var(--text-muted); }
+
+.swatches { display: flex; gap: 10px; }
+.swatch { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border); }
+.swatch[aria-pressed="true"] { outline: 3px solid var(--text); outline-offset: 2px; }
+/* Сонголтын дугуйн өнгө нь тухайн загварын өдрийн үндсэн өнгө */
+.swatch-smartger { background: #0060F2; }
+.swatch-navy { background: #0B2E6E; }
+.swatch-sky { background: #0067B0; }
+.swatch-indigo { background: #3A3CD4; }
+.swatch-slate { background: #3D5170; }
+
+/* Үндсэн хэсэг */
+.main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.main > section, .main > * + section { margin-bottom: 28px; }
+.hero h1 { font-size: 1.35rem; }
+.back { display: inline-block; margin-bottom: 12px; text-decoration: none; }
+
+.filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+.chip {
+  flex: none; border: 1px solid var(--border); background: var(--surface);
+  border-radius: 999px; padding: 8px 14px; min-height: 40px; font-size: 0.9rem;
+}
+.chip[aria-pressed="true"] { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+
+.map {
+  height: 60vh; min-height: 320px; max-height: 520px;
+  border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden;
+  background: var(--surface);
+}
+.leaflet-popup-content a { color: #0060F2; }
+
+.pin {
+  width: 36px; height: 36px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  display: grid; place-items: center;
+  background: var(--primary); border: 3px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+.pin span { transform: rotate(45deg); color: var(--on-primary); font-weight: 700; font-size: 0.8rem; }
+.pin-planning { background: var(--surface); border-color: var(--primary); }
+.pin-planning span { color: var(--primary); }
+
+.grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .header-bar { padding: 10px 24px; }
+  .main { padding: 24px; }
+}
+
+.card {
+  display: block; background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px 16px; box-shadow: var(--shadow); text-decoration: none;
+}
+a.card:hover { border-color: var(--primary); }
+.card-row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.project-card p { margin: 4px 0; }
+
+.badge {
+  display: inline-block; border-radius: 999px; padding: 2px 10px;
+  font-size: 0.78rem; font-weight: 600; border: 1px solid currentColor;
+}
+.badge-planning { color: var(--text-muted); }
+.badge-under_construction { color: var(--primary); }
+.badge-completed { color: var(--ok); background: var(--ok-bg); }
+.badge-delay { color: var(--bad); background: var(--bad-bg); }
+.verified { color: var(--ok); font-weight: 700; }
+
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 12px 0 0; }
+.facts dt { color: var(--text-muted); }
+.facts dd { margin: 0; }
+.sourced { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.sourced-value { font-weight: 600; }
+.sourced-meta { font-size: 0.78rem; color: var(--text-muted); }
+.not-found { color: var(--warn); background: var(--warn-bg); padding: 1px 8px; border-radius: 6px; font-size: 0.875rem; }
+
+.footer {
+  border-top: 1px solid var(--border); padding: 20px 16px 32px;
+  text-align: center; font-size: 0.85rem; max-width: 1100px; margin: 0 auto;
+}
+.footer p { margin: 4px 0; }
+
+/* Leaflet-ийн хяналтыг шөнийн горимд тааруулах */
+.leaflet-bar a { background: var(--surface); color: var(--text); border-color: var(--border); }
+.leaflet-container { font-family: var(--font); }
