@@ -58,3 +58,23 @@ export function isStale(project, today = DEMO_TODAY) {
   const days = (new Date(today) - new Date(project.lastUpdate)) / 86400000;
   return days > 60;
 }
+
+// Бүх байр зарагдсан эсэх (зарагдсан хотхон өгөгдмөлөөр нуугдана).
+export function isSoldOut(projectId) {
+  const units = unitsOfProject(projectId);
+  return units.length > 0 && units.every((u) => u.status === 'sold');
+}
+
+// Эхлэх үнэ: хамгийн бага м² үнэ, эх сурвалж, огноотой. Нийтлээгүй бол {status}.
+export function startingPrice(projectId) {
+  const priced = unitsOfProject(projectId).filter((u) => typeof u.pricePerM2 === 'number');
+  if (priced.length === 0) return { status: 'not_published' };
+  const min = priced.reduce((a, b) => (b.pricePerM2 < a.pricePerM2 ? b : a));
+  return { value: min.pricePerM2, source: min.priceSource, date: min.priceDate };
+}
+
+export const companyOf = (project) => companyById(project.companyId);
+
+// Үнийг сая төгрөгөөр (2 оронтой) харуулна.
+export const millions = (v, locale) =>
+  (Number(v) / 1e6).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });

@@ -92,15 +92,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .leaflet-popup-content a { color: var(--primary); }
 .leaflet-container a.leaflet-popup-close-button { color: var(--text-muted); }
 
-.pin {
-  width: 36px; height: 36px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
-  display: grid; place-items: center;
-  background: var(--primary); border: 3px solid var(--surface);
-  box-shadow: var(--shadow);
-}
-.pin span { transform: rotate(45deg); color: var(--on-primary); font-weight: 700; font-size: 0.8rem; }
-.pin-planning { background: var(--surface); border-color: var(--primary); }
-.pin-planning span { color: var(--primary); }
 
 .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
 @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
@@ -174,3 +165,71 @@ a.card:hover { border-color: var(--primary); }
 .badge-warn { color: var(--warn); background: var(--warn-bg); }
 .badge-bad { color: var(--bad); background: var(--bad-bg); }
 .stack { display: grid; gap: 12px; }
+
+/* Pin: логоны зургаан өнцөгт хэлбэр */
+.pin { position: relative; width: 44px; height: 50px; }
+.pin-hex, .legend-hex {
+  position: absolute; inset: 0;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--primary);
+  filter: drop-shadow(var(--pin-shadow));
+}
+.pin-fill {
+  position: absolute; inset: 3px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--surface);
+}
+.pin-under_construction .pin-fill { background: linear-gradient(to top, var(--primary) 50%, var(--surface) 50%); }
+.pin-completed .pin-fill { background: var(--primary); }
+.pin-logo {
+  position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; transform: translate(-50%, -50%);
+  border-radius: 50%; background-color: var(--surface);
+  background-size: 16px 16px; background-repeat: no-repeat; background-position: center;
+  box-shadow: 0 0 0 1px var(--border);
+}
+.pin-count {
+  position: absolute; top: -8px; right: -10px; min-width: 24px; height: 24px; padding: 0 6px;
+  border-radius: 12px; background: var(--text); color: var(--bg);
+  font-size: 12px; font-weight: 700; line-height: 24px; text-align: center;
+  border: 2px solid var(--surface);
+}
+.pin-verified {
+  position: absolute; bottom: 4px; right: -8px; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--ok); color: var(--surface); font-size: 12px; font-weight: 700;
+  line-height: 20px; text-align: center; border: 2px solid var(--surface); box-sizing: content-box;
+}
+.pin-stale .pin-hex { opacity: 0.35; }
+
+.cluster {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--primary); color: var(--on-primary); font-weight: 700;
+  border: 3px solid var(--surface); box-shadow: var(--shadow);
+}
+
+.legend { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--text-muted); }
+.legend li { display: flex; align-items: center; gap: 6px; }
+.legend-hex { position: relative; display: inline-block; width: 16px; height: 18px; filter: none; }
+.legend-hex .pin-fill { inset: 2px; }
+.legend-hex.pin-stale { opacity: 0.35; }
+.legend-verified {
+  display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--ok); color: var(--surface); font-size: 10px; font-weight: 700;
+}
+
+.popup h3 { margin: 6px 0 2px; }
+.popup p { margin: 4px 0; }
+.popup .btn { margin-top: 6px; width: 100%; }
+.leaflet-popup-content .btn-primary { color: var(--on-primary); }
+.stale-note { color: var(--warn); }
+
+.toggle { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 10px; min-height: 36px; }
+.toggle input { width: 20px; height: 20px; accent-color: var(--primary); }
+
+.company-card, .company-head { display: flex; gap: 14px; align-items: flex-start; }
+.company-head h1 { margin-bottom: 6px; }
+.company-logo { flex: none; border-radius: var(--radius-sm); object-fit: contain; }
+.company-logo.placeholder {
+  display: grid; place-items: center; background: var(--bg); color: var(--primary);
+  border: 1px dashed var(--border); font-weight: 700; font-size: 1.3rem;
+}

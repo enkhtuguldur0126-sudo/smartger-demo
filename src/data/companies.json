@@ -1,43 +1,76 @@
 [
   {
     "id": "c-sumber",
-    "name": { "mn": "Сүмбэр Өргөө Девелопмент", "en": "Sumber Urguu Development" },
+    "name": {
+      "mn": "Сүмбэр Өргөө Девелопмент",
+      "en": "Sumber Urguu Development"
+    },
     "logo": null,
     "about": {
       "mn": "Зохиомол компани. 2012 онд байгуулагдсан гэж үзсэн орон сууцны хөгжүүлэгч. Улаанбаатарт 3 хотхон хүлээлгэн өгсөн.",
       "en": "Fictional company. A residential developer assumed to be founded in 2012. Has handed over 3 complexes in Ulaanbaatar."
     },
-    "contact": { "phone": "0000-0000 (зохиомол)", "email": "info@example.com", "web": null },
+    "contact": {
+      "phone": "0000-0000 (зохиомол)",
+      "email": "info@example.com",
+      "web": null
+    },
     "verified": true,
     "pastProjects": [
-      { "name": { "mn": "Сүмбэр 1 хотхон", "en": "Sumber 1 Residence" }, "handover": "2019-09", "units": 96 },
-      { "name": { "mn": "Сүмбэр 2 хотхон", "en": "Sumber 2 Residence" }, "handover": "2021-11", "units": 120 },
-      { "name": { "mn": "Сүмбэр 3 хотхон", "en": "Sumber 3 Residence" }, "handover": "2024-06", "units": 104 }
+      {
+        "name": {
+          "mn": "Сүмбэр 1 хотхон",
+          "en": "Sumber 1 Residence"
+        },
+        "handover": "2019-09",
+        "units": 96
+      }
     ]
   },
   {
     "id": "c-khangai",
-    "name": { "mn": "Хангайн Шилмэл Барилга ХХК", "en": "Khangain Shilmel Construction LLC" },
+    "name": {
+      "mn": "Хангайн Шилмэл Барилга ХХК",
+      "en": "Khangain Shilmel Construction LLC"
+    },
     "logo": null,
     "about": {
       "mn": "Зохиомол компани. Анхны томоохон орон сууцны төслөө хэрэгжүүлж буй гэж үзсэн.",
       "en": "Fictional company. Assumed to be delivering its first large residential project."
     },
-    "contact": { "phone": "0000-0001 (зохиомол)", "email": null, "web": null },
+    "contact": {
+      "phone": "0000-0001 (зохиомол)",
+      "email": null,
+      "web": null
+    },
     "verified": false,
     "pastProjects": [
-      { "name": { "mn": "Шилмэл оффис төв", "en": "Shilmel office centre" }, "handover": "2022-08", "units": null }
+      {
+        "name": {
+          "mn": "Шилмэл оффис төв",
+          "en": "Shilmel office centre"
+        },
+        "handover": "2022-08",
+        "units": null
+      }
     ]
   },
   {
     "id": "c-mungun",
-    "name": { "mn": "Мөнгөн Хүрээ Констракшн", "en": "Mungun Khuree Construction" },
+    "name": {
+      "mn": "Мөнгөн Хүрээ Констракшн",
+      "en": "Mungun Khuree Construction"
+    },
     "logo": null,
     "about": {
       "mn": "Зохиомол компани. 2025 онд байгуулагдсан гэж үзсэн шинэ хөгжүүлэгч.",
       "en": "Fictional company. A new developer assumed to be founded in 2025."
     },
-    "contact": { "phone": null, "email": "hello@example.com", "web": null },
+    "contact": {
+      "phone": null,
+      "email": "hello@example.com",
+      "web": null
+    },
     "verified": false,
     "pastProjects": []
   }

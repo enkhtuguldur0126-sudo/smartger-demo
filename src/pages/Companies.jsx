@@ -1,23 +1,36 @@
 import { useLang } from '../lib/i18n.jsx';
 import { db, projectsOf } from '../lib/data.js';
 import { href } from '../lib/router.js';
-import Placeholder from './Placeholder.jsx';
+import CompanyLogo from '../components/CompanyLogo.jsx';
 
 export default function Companies() {
   const { t, pick } = useLang();
   return (
-    <Placeholder titleKey="page.companies">
+    <section className="stack">
+      <h1>{t('page.companies')}</h1>
       <div className="grid">
-        {db.companies.map((c) => (
-          <a key={c.id} className="card" href={href('company', c.id)}>
-            <h3>
-              {pick(c.name)}
-              {c.verified && <span className="verified" title={t('common.verified')}> ✓</span>}
-            </h3>
-            <p className="muted small">{t('home.count', { n: projectsOf(c.id).length })}</p>
-          </a>
-        ))}
+        {db.companies.map((c) => {
+          const list = projectsOf(c.id);
+          const active = list.filter((p) => p.status !== 'completed').length;
+          const done = list.filter((p) => p.status === 'completed').length + c.pastProjects.length;
+          return (
+            <a key={c.id} className="card company-card" href={href('company', c.id)}>
+              <CompanyLogo company={c} size={48} />
+              <div>
+                <h3>{pick(c.name)}</h3>
+                {c.verified ? (
+                  <span className="badge badge-ok">✓ {t('common.verified')}</span>
+                ) : (
+                  <span className="badge badge-planning">{t('company.notVerified')}</span>
+                )}
+                <p className="muted small">
+                  {t('company.activeCount', { n: active })} · {t('company.doneCount', { n: done })}
+                </p>
+              </div>
+            </a>
+          );
+        })}
       </div>
-    </Placeholder>
+    </section>
   );
 }

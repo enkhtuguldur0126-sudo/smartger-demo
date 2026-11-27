@@ -1,7 +1,74 @@
 [
-  { "id": "ph-kt-1", "projectId": "p-khavryn-tuyaa", "number": 1, "units": 168, "promisedHandover": "2027-06", "currentEstimate": "2027-06", "estimateSource": "company", "estimateDate": "2026-11-10" },
-  { "id": "ph-kt-2", "projectId": "p-khavryn-tuyaa", "number": 2, "units": 144, "promisedHandover": "2028-03", "currentEstimate": "2028-03", "estimateSource": "company", "estimateDate": "2026-11-10" },
-  { "id": "ph-tk-1", "projectId": "p-tsenkher-khundii", "number": 1, "units": 96, "promisedHandover": "2026-10", "currentEstimate": "2027-05", "estimateSource": "smartger", "estimateDate": "2026-08-20" },
-  { "id": "ph-tk-2", "projectId": "p-tsenkher-khundii", "number": 2, "units": 90, "promisedHandover": "2027-09", "currentEstimate": { "status": "not_found" }, "estimateSource": null, "estimateDate": null },
-  { "id": "ph-kn-1", "projectId": "p-khukh-narsan-denj", "number": 1, "units": 140, "promisedHandover": "2029-09", "currentEstimate": "2029-09", "estimateSource": "company", "estimateDate": "2026-09-15" }
+  {
+    "id": "ph-kt-1",
+    "projectId": "p-khavryn-tuyaa",
+    "number": 1,
+    "units": 168,
+    "promisedHandover": "2027-06",
+    "currentEstimate": "2027-06",
+    "estimateSource": "company",
+    "estimateDate": "2026-11-10"
+  },
+  {
+    "id": "ph-kt-2",
+    "projectId": "p-khavryn-tuyaa",
+    "number": 2,
+    "units": 144,
+    "promisedHandover": "2028-03",
+    "currentEstimate": "2028-03",
+    "estimateSource": "company",
+    "estimateDate": "2026-11-10"
+  },
+  {
+    "id": "ph-tk-1",
+    "projectId": "p-tsenkher-khundii",
+    "number": 1,
+    "units": 96,
+    "promisedHandover": "2026-10",
+    "currentEstimate": "2027-05",
+    "estimateSource": "smartger",
+    "estimateDate": "2026-08-20"
+  },
+  {
+    "id": "ph-tk-2",
+    "projectId": "p-tsenkher-khundii",
+    "number": 2,
+    "units": 90,
+    "promisedHandover": "2027-09",
+    "currentEstimate": {
+      "status": "not_found"
+    },
+    "estimateSource": null,
+    "estimateDate": null
+  },
+  {
+    "id": "ph-kn-1",
+    "projectId": "p-khukh-narsan-denj",
+    "number": 1,
+    "units": 140,
+    "promisedHandover": "2029-09",
+    "currentEstimate": "2029-09",
+    "estimateSource": "company",
+    "estimateDate": "2026-09-15"
+  },
+  {
+    "id": "ph-s3-1",
+    "projectId": "p-sumber-3",
+    "number": 1,
+    "units": 104,
+    "promisedHandover": "2024-06",
+    "currentEstimate": "2024-06",
+    "estimateSource": "document",
+    "estimateDate": "2024-06-30"
+  },
+  {
+    "id": "ph-s2-1",
+    "projectId": "p-sumber-2",
+    "number": 1,
+    "units": 120,
+    "promisedHandover": "2021-11",
+    "currentEstimate": "2021-11",
+    "estimateSource": "document",
+    "estimateDate": "2021-11-30"
+  }
 ]
