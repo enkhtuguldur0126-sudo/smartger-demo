@@ -3,6 +3,7 @@ import { href } from '../lib/router.js';
 import { companyById, availableCount, nextHandover, isDelayed, isStale, isSoldOut, startingPrice, millions } from '../lib/data.js';
 import StatusBadge from './StatusBadge.jsx';
 import Sourced from './Sourced.jsx';
+import { VerifiedBadge } from './TrustBadges.jsx';
 
 export default function ProjectCard({ project }) {
   const { t, pick, locale } = useLang();
@@ -21,9 +22,7 @@ export default function ProjectCard({ project }) {
       <h3>{pick(project.name)}</h3>
       <p className="muted">
         {pick(company?.name)}
-        {company?.verified && (
-          <span className="verified" title={t('common.verified')} aria-label={t('common.verified')}> ✓</span>
-        )}
+        {' '}<VerifiedBadge verified={company?.verified} compact />
       </p>
       <p className="muted small">{pick(project.address)}</p>
       <p className="small">

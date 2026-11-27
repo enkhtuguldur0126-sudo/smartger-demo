@@ -11,8 +11,10 @@ import PriceCategories from '../components/PriceCategories.jsx';
 import ProgressIllustration from '../components/ProgressIllustration.jsx';
 import CompanyLogo from '../components/CompanyLogo.jsx';
 import FloorPlan from '../components/FloorPlan.jsx';
+import QA from '../components/QA.jsx';
+import { VerifiedBadge, LevelBadge } from '../components/TrustBadges.jsx';
 
-export const TABS = ['overview', 'units', 'progress', 'documents', 'company', 'promises'];
+export const TABS = ['overview', 'units', 'progress', 'documents', 'company', 'promises', 'qa'];
 
 function NotFound({ k = 'common.notFound' }) {
   const { t } = useLang();
@@ -175,9 +177,7 @@ function Progress({ project }) {
               <div className="bar" role="progressbar" aria-valuenow={p.percent} aria-valuemin="0" aria-valuemax="100">
                 <span style={{ width: `${p.percent}%` }} />
               </div>
-              <span className={`badge tiny badge-level-${p.verificationLevel}`}>
-                {t('verify.level', { n: p.verificationLevel })}: {t(`verify.l${p.verificationLevel}`)}
-              </span>
+              <LevelBadge level={p.verificationLevel} />
               <span className="small muted">{t('progress.checkedBy')}: {pick(p.checkedBy)}</span>
             </div>
           </li>
@@ -201,7 +201,7 @@ function Documents({ project }) {
           <NotFound />
         ) : (
           <dl className="facts">
-            <dt>{t('doc.number')}</dt><dd>{permit.number}</dd>
+            <dt>{t('doc.number')}</dt><dd>{pick(permit.number)}</dd>
             <dt>{t('doc.issuer')}</dt><dd>{pick(permit.issuer)}</dd>
             <dt>{t('doc.date')}</dt><dd>{permit.date}</dd>
             <dt>{t('common.source')}</dt><dd><SourceTag source={permit.source} /></dd>
@@ -240,11 +240,7 @@ function CompanyTab({ project }) {
         <CompanyLogo company={c} size={56} />
         <div>
           <h2>{pick(c.name)}</h2>
-          {c.verified ? (
-            <span className="badge badge-ok">✓ {t('common.verified')}</span>
-          ) : (
-            <span className="badge badge-planning">{t('company.notVerified')}</span>
-          )}
+          <VerifiedBadge verified={c.verified} />
         </div>
       </div>
       <p>{pick(c.about)}</p>
@@ -353,7 +349,7 @@ function Promises({ project }) {
   );
 }
 
-const VIEWS = { overview: Overview, units: Units, progress: Progress, documents: Documents, company: CompanyTab, promises: Promises };
+const VIEWS = { overview: Overview, units: Units, progress: Progress, documents: Documents, company: CompanyTab, promises: Promises, qa: ({ project }) => <QA projectId={project.id} /> };
 
 export default function Project({ id, tab = 'overview' }) {
   const { t, pick } = useLang();
@@ -374,7 +370,7 @@ export default function Project({ id, tab = 'overview' }) {
         <h1>{pick(project.name)}</h1>
         <p className="muted">
           <a href={href('company', company.id)}>{pick(company.name)}</a>
-          {company.verified && <span className="verified"> ✓</span>} · {pick(project.address)}
+          {' '}<VerifiedBadge verified={company.verified} compact /> · {pick(project.address)}
         </p>
       </div>
 

@@ -2,6 +2,7 @@ import { useLang } from '../lib/i18n.jsx';
 import { db, projectsOf } from '../lib/data.js';
 import { href } from '../lib/router.js';
 import CompanyLogo from '../components/CompanyLogo.jsx';
+import { VerifiedBadge } from '../components/TrustBadges.jsx';
 
 export default function Companies() {
   const { t, pick } = useLang();
@@ -18,11 +19,7 @@ export default function Companies() {
               <CompanyLogo company={c} size={48} />
               <div>
                 <h3>{pick(c.name)}</h3>
-                {c.verified ? (
-                  <span className="badge badge-ok">✓ {t('common.verified')}</span>
-                ) : (
-                  <span className="badge badge-planning">{t('company.notVerified')}</span>
-                )}
+                <VerifiedBadge verified={c.verified} />
                 <p className="muted small">
                   {t('company.activeCount', { n: active })} · {t('company.doneCount', { n: done })}
                 </p>

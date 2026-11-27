@@ -9,8 +9,10 @@ import claims from '../data/claims.json';
 import snapshots from '../data/snapshots.json';
 import benchmarks from '../data/benchmarks.json';
 import prices from '../data/prices.json';
+import qa from '../data/qa.json';
+import reports from '../data/reports.json';
 
-export const db = { companies, projects, phases, blocks, unitTypes, progress, claims, snapshots, benchmarks, prices };
+export const db = { companies, projects, phases, blocks, unitTypes, progress, claims, snapshots, benchmarks, prices, qa, reports };
 
 // Талбар "олдоогүй" эсвэл "үнэ нийтлээгүй" төлөвтэй эсэх.
 export function missing(v) {
@@ -103,4 +105,19 @@ export function monthsBetween(a, b) {
   const [ay, am] = a.split('-').map(Number);
   const [by, bm] = b.split('-').map(Number);
   return (by - ay) * 12 + (bm - am);
+}
+
+export const qaOf = (projectId) => qa.filter((q) => q.projectId === projectId);
+
+// Хариу өгсөн хувь ба дундаж хариулах хугацаа (хоногоор).
+export function qaStats(projectId) {
+  const list = qaOf(projectId);
+  const answered = list.filter((q) => q.answer);
+  const days = answered.map((q) => (new Date(q.answeredOn) - new Date(q.askedOn)) / 86400000);
+  return {
+    total: list.length,
+    answered: answered.length,
+    rate: list.length ? Math.round((answered.length / list.length) * 100) : null,
+    avgDays: days.length ? Math.round((days.reduce((a, b) => a + b, 0) / days.length) * 10) / 10 : null
+  };
 }

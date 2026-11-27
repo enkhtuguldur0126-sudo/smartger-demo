@@ -51,7 +51,11 @@ export default function ProjectMap({ projects }) {
           iconSize: [44, 44]
         })
     }).addTo(map.current);
-    return () => map.current.remove();
+    return () => {
+      map.current.stop();
+      map.current.off();
+      map.current.remove();
+    };
   }, []);
 
   useEffect(() => {
@@ -77,7 +81,7 @@ export default function ProjectMap({ projects }) {
         <div class="popup">
           <span class="badge badge-${p.status}">${esc(status)}</span>
           <h3>${esc(pick(p.name))}</h3>
-          <p class="muted">${esc(pick(company?.name))}${company?.verified ? ` <span class="verified">✓</span>` : ''}</p>
+          <p class="muted">${esc(pick(company?.name))}${company?.verified ? ` <span class="verified-dot" title="${esc(t('common.verified'))}">✓</span>` : ''}</p>
           <p>${priceText}</p>
           <p class="small">${esc(t('home.availableUnits', { n: count }))}</p>
           ${stale ? `<p class="small stale-note">${esc(t('map.stale', { date: p.lastUpdate }))}</p>` : ''}
@@ -88,9 +92,9 @@ export default function ProjectMap({ projects }) {
       layer.current.addLayer(marker);
     });
     if (projects.length > 1) {
-      map.current.fitBounds(L.latLngBounds(projects.map((p) => p.coords)), { padding: [50, 50], maxZoom: 14 });
+      map.current.fitBounds(L.latLngBounds(projects.map((p) => p.coords)), { padding: [50, 50], maxZoom: 14, animate: false });
     } else if (projects.length === 1) {
-      map.current.setView(projects[0].coords, 14);
+      map.current.setView(projects[0].coords, 14, { animate: false });
     }
   }, [projects, t, pick, locale]);
 

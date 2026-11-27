@@ -4,6 +4,7 @@ import { href } from '../lib/router.js';
 import Placeholder from './Placeholder.jsx';
 import CompanyLogo from '../components/CompanyLogo.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
+import { VerifiedBadge } from '../components/TrustBadges.jsx';
 
 function Value({ v }) {
   const { t } = useLang();
@@ -26,11 +27,7 @@ export default function Company({ id }) {
         <CompanyLogo company={c} size={72} />
         <div>
           <h1>{pick(c.name)}</h1>
-          {c.verified ? (
-            <span className="badge badge-ok">✓ {t('common.verified')}</span>
-          ) : (
-            <span className="badge badge-planning">{t('company.notVerified')}</span>
-          )}
+          <VerifiedBadge verified={c.verified} />
           {!c.logo && <p className="small muted">{t('company.logoNotFound')}</p>}
         </div>
       </div>
@@ -39,7 +36,7 @@ export default function Company({ id }) {
         <h2>{t('company.about')}</h2>
         <p>{pick(c.about) || <span className="not-found">{t('common.notFound')}</span>}</p>
         <dl className="facts">
-          <dt>{t('company.phone')}</dt><dd><Value v={c.contact.phone} /></dd>
+          <dt>{t('company.phone')}</dt><dd><Value v={pick(c.contact.phone)} /></dd>
           <dt>{t('company.email')}</dt><dd><Value v={c.contact.email} /></dd>
           <dt>{t('company.web')}</dt><dd><Value v={c.contact.web} /></dd>
         </dl>

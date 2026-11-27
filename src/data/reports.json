@@ -1,0 +1,11 @@
+[
+  {
+    "id": "r-tk-2026-11",
+    "projectId": "p-tsenkher-khundii",
+    "month": "2026-11",
+    "buyer": { "mn": "Худалдан авагч №0001 (зохиомол)", "en": "Buyer No. 0001 (fictional)" },
+    "unitTypeId": "u-tk-1-2",
+    "location": { "mn": "Германд амьдардаг", "en": "Lives in Germany" },
+    "payment": { "nextDate": "2026-12-15", "amount": 25000000, "paidSoFar": 110000000, "total": 275000000 }
+  }
+]

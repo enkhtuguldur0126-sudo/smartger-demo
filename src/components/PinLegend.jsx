@@ -12,7 +12,7 @@ export default function PinLegend() {
           {t(`status.${s}`)}
         </li>
       ))}
-      <li><span className="legend-verified">✓</span>{t('common.verified')}</li>
+      <li><span className="verified-dot" aria-hidden="true">✓</span>{t('common.verified')}</li>
       <li><span className="legend-hex pin-under_construction pin-stale"><span className="pin-fill" /></span>{t('map.legendStale')}</li>
     </ul>
   );

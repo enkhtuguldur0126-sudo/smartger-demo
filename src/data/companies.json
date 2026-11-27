@@ -11,7 +11,10 @@
       "en": "Fictional company. A residential developer assumed to be founded in 2012. Has handed over 3 complexes in Ulaanbaatar."
     },
     "contact": {
-      "phone": "0000-0000 (зохиомол)",
+      "phone": {
+        "mn": "0000-0000 (зохиомол)",
+        "en": "0000-0000 (fictional)"
+      },
       "email": "info@example.com",
       "web": null
     },
@@ -39,7 +42,10 @@
       "en": "Fictional company. Assumed to be delivering its first large residential project."
     },
     "contact": {
-      "phone": "0000-0001 (зохиомол)",
+      "phone": {
+        "mn": "0000-0001 (зохиомол)",
+        "en": "0000-0001 (fictional)"
+      },
       "email": null,
       "web": null
     },

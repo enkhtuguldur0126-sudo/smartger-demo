@@ -35,7 +35,10 @@
       "date": "2025-03-15"
     },
     "permit": {
-      "number": "ЗӨВ-2025-0000 (зохиомол)",
+      "number": {
+        "mn": "ЗӨВ-2025-0000 (зохиомол)",
+        "en": "PERMIT-2025-0000 (fictional)"
+      },
       "issuer": {
         "mn": "Барилгын зөвшөөрөл олгох байгууллага (зохиомол)",
         "en": "Building permit authority (fictional)"
@@ -85,7 +88,10 @@
       "date": "2024-09-01"
     },
     "permit": {
-      "number": "ЗӨВ-2024-0000 (зохиомол)",
+      "number": {
+        "mn": "ЗӨВ-2024-0000 (зохиомол)",
+        "en": "PERMIT-2024-0000 (fictional)"
+      },
       "issuer": {
         "mn": "Барилгын зөвшөөрөл олгох байгууллага (зохиомол)",
         "en": "Building permit authority (fictional)"
@@ -177,7 +183,10 @@
       "date": "2024-06-30"
     },
     "permit": {
-      "number": "ЗӨВ-2022-0000 (зохиомол)",
+      "number": {
+        "mn": "ЗӨВ-2022-0000 (зохиомол)",
+        "en": "PERMIT-2022-0000 (fictional)"
+      },
       "issuer": {
         "mn": "Барилгын зөвшөөрөл олгох байгууллага (зохиомол)",
         "en": "Building permit authority (fictional)"

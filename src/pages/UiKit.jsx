@@ -3,6 +3,7 @@ import Button from '../components/Button.jsx';
 import StatusBadge from '../components/StatusBadge.jsx';
 import Sourced from '../components/Sourced.jsx';
 import { Loading, ErrorState } from '../components/States.jsx';
+import { VerifiedBadge, LevelBadge } from '../components/TrustBadges.jsx';
 
 // Нийтлэг хэсгүүдийг нэг дор харуулах шалгах хуудас (#/ui). Цэсэнд байхгүй.
 export default function UiKit() {
@@ -25,7 +26,11 @@ export default function UiKit() {
           <StatusBadge status="planning" />
           <StatusBadge status="under_construction" />
           <StatusBadge status="completed" />
-          <span className="badge badge-ok">✓ {t('common.verified')}</span>
+          <VerifiedBadge verified />
+          <VerifiedBadge verified={false} />
+          <VerifiedBadge verified compact />
+          <LevelBadge level={1} />
+          <LevelBadge level={2} />
         </div>
         <h2>{t('ui.alerts')}</h2>
         <div className="card-row">

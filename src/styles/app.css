@@ -118,7 +118,7 @@ a.card:hover { border-color: var(--primary); }
 .badge-under_construction { color: var(--primary); }
 .badge-completed { color: var(--ok); background: var(--ok-bg); }
 .badge-delay { color: var(--bad); background: var(--bad-bg); }
-.verified { color: var(--ok); font-weight: 700; }
+
 
 .facts { display: grid; grid-template-columns: minmax(0, 42%) 1fr; gap: 8px 16px; margin: 12px 0 0; }
 .facts dt { color: var(--text-muted); }
@@ -212,10 +212,6 @@ a.card:hover { border-color: var(--primary); }
 .legend-hex { position: relative; display: inline-block; width: 16px; height: 18px; filter: none; }
 .legend-hex .pin-fill { inset: 2px; }
 .legend-hex.pin-stale { opacity: 0.35; }
-.legend-verified {
-  display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%;
-  background: var(--ok); color: var(--surface); font-size: 10px; font-weight: 700;
-}
 
 .popup h3 { margin: 6px 0 2px; }
 .popup p { margin: 4px 0; }
@@ -325,3 +321,41 @@ a.card:hover { border-color: var(--primary); }
 
 .choose { border: 0; padding: 0; margin: 0; display: grid; gap: 2px; }
 .choose legend { font-weight: 700; margin-bottom: 4px; }
+
+/* ---------- Итгэлийн шошго (нэг загвар) ---------- */
+.verified-dot {
+  display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ok); color: var(--surface); font-size: 11px; font-weight: 700;
+  vertical-align: middle; flex: none;
+}
+.trust-badge { display: inline-flex; gap: 4px; align-items: center; }
+.level-badge {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  font-size: 0.78rem; font-weight: 600; text-decoration: none;
+  padding: 2px 10px 2px 8px; border-radius: 999px; border: 1px solid currentColor;
+  color: var(--text-muted);
+}
+.level-badge.level-2 { color: var(--primary); }
+.pips { display: inline-flex; gap: 2px; }
+.pip { width: 6px; height: 10px; border-radius: 2px; background: var(--border); }
+.pip.on { background: currentColor; }
+
+/* ---------- Шат 05 ---------- */
+.demo-note { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.demo-note strong { margin-right: 4px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stats > div { display: grid; gap: 2px; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+.qa-item p { margin: 0 0 4px; }
+.qa-a { margin-top: 8px; padding: 8px 10px; border-left: 3px solid var(--primary); background: var(--bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+textarea {
+  font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px; width: 100%;
+}
+.btn:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
+.levels { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.levels li { display: grid; gap: 4px; justify-items: start; }
+.levels p { margin: 0; }
+.plain { padding-left: 0; list-style: none; display: grid; gap: 10px; margin: 0; }
+.plain-ol { padding-left: 20px; display: grid; gap: 8px; margin: 0; }
+.report h1 { margin: 4px 0; }
