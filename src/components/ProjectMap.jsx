@@ -21,7 +21,7 @@ function pinHtml(project, count, verified, stale, labels) {
   const classes = ['pin', `pin-${project.status}`, stale ? 'pin-stale' : ''].join(' ');
   return `
     <div class="${classes}" aria-label="${esc(labels)}">
-      <div class="pin-hex"><div class="pin-fill"></div><span class="pin-logo" style="background-image:url(${import.meta.env.BASE_URL}logo-mark.png)"></span></div>
+      <div class="pin-hex"><div class="pin-fill"></div><span class="pin-logo" style="background-image:url(${import.meta.env.BASE_URL}logo-mark-outline.png)"></span></div>
       <span class="pin-count">${count}</span>
       ${verified ? '<span class="pin-verified">✓</span>' : ''}
       <span class="pin-tail"></span>
