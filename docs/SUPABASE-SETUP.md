@@ -23,8 +23,11 @@
 1. **Authentication → Users → Add user → Create new user**. Имэйл, нууц үг (10+ тэмдэгт) бичиж, "Auto Confirm User" сонгоод Create.
 2. SQL Editor-т дараахыг бичиж (имэйлийг өөрийнхөөрөө сольж) Run:
    ```sql
-   update public.profiles set role = 'admin' where email = 'таны-имэйл';
+   insert into public.profiles (id, email, role)
+   select id, email, 'admin' from auth.users where email = 'таны-имэйл'
+   on conflict (id) do update set role = 'admin';
    ```
+3. "1 row affected" гарна. Сайтаа шинэчилнэ.
 
 ## 5. Туршилтын компанийн хэрэглэгч
 1. Дахин **Add user**. Gmail ашигладаг бол `нэр+sumber@gmail.com` гэх мэт хаяг таны ижил имэйл хайрцагт очно.
