@@ -184,7 +184,7 @@ a.card:hover { border-color: var(--primary); }
 .pin-logo {
   position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; transform: translate(-50%, -50%);
   border-radius: 50%; background-color: var(--surface);
-  background-size: 16px 16px; background-repeat: no-repeat; background-position: center;
+  background-size: 18px 18px; background-repeat: no-repeat; background-position: center;
   box-shadow: 0 0 0 1px var(--border);
 }
 .pin-count {
