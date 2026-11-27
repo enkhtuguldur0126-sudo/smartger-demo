@@ -47,7 +47,8 @@ export function LangProvider({ children }) {
       return obj[lang] || obj.en || obj.mn || null;
     };
     const locale = lang === 'mn' ? 'mn-MN' : lang === 'zh' ? 'zh-CN' : 'en-GB';
-    return { lang, setLang, t, pick, locale };
+    const has = (key) => Boolean(dict[key] || en[key] || mn[key]);
+    return { lang, setLang, t, pick, locale, has };
   }, [lang]);
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;

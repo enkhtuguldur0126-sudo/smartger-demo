@@ -11,6 +11,10 @@ import Report from './pages/Report.jsx';
 import Compare from './pages/Compare.jsx';
 import Placeholder from './pages/Placeholder.jsx';
 import UiKit from './pages/UiKit.jsx';
+import Login from './pages/Login.jsx';
+import Workspace from './pages/Workspace.jsx';
+import Admin from './pages/Admin.jsx';
+import Legal from './pages/Legal.jsx';
 
 function Page({ parts }) {
   const [name, id] = parts;
@@ -23,6 +27,11 @@ function Page({ parts }) {
     case 'how-it-works': return <HowItWorks />;
     case 'report': return <Report />;
     case 'ui': return <UiKit />;
+    case 'login': return <Login />;
+    case 'workspace': return <Workspace />;
+    case 'admin': return <Admin />;
+    case 'privacy': return <Legal doc="privacy" />;
+    case 'terms': return <Legal doc="terms" />;
     default: return <Placeholder titleKey="page.notFound" />;
   }
 }

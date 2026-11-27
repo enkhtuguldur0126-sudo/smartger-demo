@@ -1,0 +1,89 @@
+# Өдөр бүр өгөгдлийн сангийн нөөц авч, нууц үгээр шифрлээд хадгална. Дараа нь сэргээх туршилт хийнэ.
+# Шаардлагатай GitHub Secrets (Settings → Secrets and variables → Actions):
+#   SUPABASE_DB_URL     – Supabase → Connect → "Session pooler" холбоос (нууц үгтэй). Кодонд хэзээ ч бүү бич.
+#   BACKUP_PASSPHRASE   – нөөц файлыг шифрлэх урт нууц үг. Өөр газар (жишээ нь нууц үгийн менежерт) хадгал.
+name: Backup database
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # Улаанбаатарын цагаар өглөө 02:00
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check secrets
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+          PP: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          if [ -z "$DB" ] || [ -z "$PP" ]; then echo "SUPABASE_DB_URL эсвэл BACKUP_PASSPHRASE тохируулаагүй байна"; exit 1; fi
+      - name: Dump database (public schema)
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          mkdir -p out
+          docker run --rm -e DB -v "$PWD/out:/out" postgres:17 \
+            sh -c 'pg_dump "$DB" --schema=public --no-owner --no-privileges -Fc -f /out/smartger.dump'
+          ls -l out
+      - name: Download progress photos
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          mkdir -p out/photos
+          BASE=$(node -p "require('./src/config/backend.json').url")
+          docker run --rm -e DB postgres:17 psql "$DB" -tAc "select photo_path from public.progress where photo_path is not null" > out/photo-list.txt
+          while read -r p; do
+            [ -z "$p" ] && continue
+            mkdir -p "out/photos/$(dirname "$p")"
+            curl -sfL "$BASE/storage/v1/object/public/progress-photos/$p" -o "out/photos/$p" || echo "Зураг татаж чадсангүй: $p"
+          done < out/photo-list.txt
+          echo "Зураг: $(find out/photos -type f | wc -l)"
+      - name: Encrypt
+        env:
+          PP: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          tar -C out -czf backup.tar.gz .
+          echo "$PP" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --symmetric --cipher-algo AES256 -o smartger-backup.tar.gz.gpg backup.tar.gz
+          rm -rf out backup.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smartger-backup-${{ github.run_id }}
+          path: smartger-backup.tar.gz.gpg
+          retention-days: 30
+
+  restore-test:
+    needs: backup
+    runs-on: ubuntu-latest
+    services:
+      pg:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: smartger-backup-${{ github.run_id }}
+      - name: Decrypt
+        env:
+          PP: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          echo "$PP" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 -d -o backup.tar.gz smartger-backup.tar.gz.gpg
+          mkdir restored && tar -C restored -xzf backup.tar.gz
+          ls -l restored
+      - name: Restore into empty database and check
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-common >/dev/null
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y >/dev/null
+          sudo apt-get install -y -qq postgresql-client-17 >/dev/null
+          export PATH=/usr/lib/postgresql/17/bin:$PATH
+          scripts/restore-test.sh restored/smartger.dump "postgresql://postgres:test@localhost:5432/postgres"

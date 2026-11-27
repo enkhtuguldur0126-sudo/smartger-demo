@@ -4,6 +4,7 @@ import {
   snapshotOf, projectsOf, monthsBetween, millions, missing, isStale
 } from '../lib/data.js';
 import { href } from '../lib/router.js';
+import { photoUrl } from '../lib/backend.js';
 import Placeholder from './Placeholder.jsx';
 import StatusBadge from '../components/StatusBadge.jsx';
 import Sourced from '../components/Sourced.jsx';
@@ -164,7 +165,17 @@ function Progress({ project }) {
         {list.map((p) => (
           <li key={p.id} className="card timeline-item">
             <div className="timeline-date">{p.date}</div>
-            {p.photo ? (
+            {p.photoPath ? (
+              <figure>
+                <img className="progress-photo" src={photoUrl(p.photoPath)} alt={pick(p.of)} loading="lazy" />
+                <figcaption className="small muted">
+                  {t('progress.photoMeta', {
+                    date: p.photoTakenAt ? p.photoTakenAt.slice(0, 10) : t('common.notFound'),
+                    place: p.photoLat != null ? `${p.photoLat.toFixed(4)}, ${p.photoLng.toFixed(4)}` : t('common.notFound')
+                  })}
+                </figcaption>
+              </figure>
+            ) : p.photo ? (
               <figure>
                 <ProgressIllustration percent={p.percent} />
                 <figcaption className="small muted">{t('progress.illustration')}</figcaption>
@@ -365,7 +376,7 @@ export default function Project({ id, tab = 'overview' }) {
       <div className="card project-head">
         <div className="card-row">
           <StatusBadge status={project.status} />
-          <span className="badge badge-warn tiny">{t('home.demoTag')}</span>
+          {project.isFictional !== false && <span className="badge badge-warn tiny">{t('home.demoTag')}</span>}
         </div>
         <h1>{pick(project.name)}</h1>
         <p className="muted">

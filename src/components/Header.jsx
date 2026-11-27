@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLang, LANGUAGES } from '../lib/i18n.jsx';
 import { useSettings, THEMES, PALETTES } from '../lib/settings.jsx';
 import { href } from '../lib/router.js';
+import { useAuth } from '../lib/auth.jsx';
 
 const NAV = [
   ['nav.home', ''],
@@ -15,6 +16,13 @@ export default function Header({ active }) {
   const { t, lang, setLang } = useLang();
   const { theme, setTheme, palette, setPalette } = useSettings();
   const [open, setOpen] = useState(false);
+  const { role } = useAuth();
+  const nav = [
+    ...NAV,
+    ...(role === 'company' || role === 'admin' ? [['nav.workspace', 'workspace']] : []),
+    ...(role === 'admin' ? [['nav.admin', 'admin']] : []),
+    [role === 'guest' ? 'nav.login' : 'nav.account', 'login']
+  ];
 
   return (
     <header className="header">
@@ -45,7 +53,7 @@ export default function Header({ active }) {
       </div>
 
       <nav className={`nav ${open ? 'open' : ''}`}>
-        {NAV.map(([key, path]) => (
+        {nav.map(([key, path]) => (
           <a
             key={key}
             href={href(...(path ? [path] : []))}
